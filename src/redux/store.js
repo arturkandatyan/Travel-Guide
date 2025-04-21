@@ -2,16 +2,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import mapReducer from "./mapSlice";
 
-// Load from localStorage
-const loadState = () => {
-  try {
-    const state = localStorage.getItem("mapState");
-    return state ? JSON.parse(state) : undefined;
-  } catch {
-    return undefined;
-  }
-};
-
 const saveState = (state) => {
   try {
     const { visitedCountries, wishlistCountries } = state;
@@ -26,13 +16,7 @@ const saveState = (state) => {
 const store = configureStore({
   reducer: {
     map: mapReducer,
-  },
-  preloadedState: {
-    map: loadState() || {
-      visitedCountries: [],
-      wishlistCountries: [],
-    },
-  },
+  }
 });
 
 // Subscribe to state changes and save

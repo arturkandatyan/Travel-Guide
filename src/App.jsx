@@ -10,7 +10,7 @@ const App = () => {
 
   useEffect(() => {
     // Dispatch highlightAllWishlist action to highlight all countries at startup
-    if (wishlistCountries.length === 0) {
+    if (visitedCountries.length === 0 && wishlistCountries.length === 0) {
       dispatch(highlightAllWishlist(allCountryCodes));  // Pass all country codes to highlight all countries
     }
   }, [dispatch, wishlistCountries.length]);  // Ensure it's only called when wishlistCountries is empty initially

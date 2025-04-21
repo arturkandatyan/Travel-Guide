@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   visitedCountries: [],
-  wishlistCountries: [], // "Want to Go"
+  wishlistCountries: [],
 };
 
 const mapSlice = createSlice({
@@ -14,8 +14,8 @@ const mapSlice = createSlice({
       if (state.visitedCountries.includes(country)) {
         state.visitedCountries = state.visitedCountries.filter(c => c !== country);
       } else {
+        // Mark visited, remove from wishlist
         state.visitedCountries.push(country);
-        // remove from wishlist
         state.wishlistCountries = state.wishlistCountries.filter(c => c !== country);
       }
     },
@@ -24,16 +24,17 @@ const mapSlice = createSlice({
       if (state.wishlistCountries.includes(country)) {
         state.wishlistCountries = state.wishlistCountries.filter(c => c !== country);
       } else {
+        // remove
         state.wishlistCountries.push(country);
-        // remove from visited
         state.visitedCountries = state.visitedCountries.filter(c => c !== country);
       }
     },
     highlightAllWishlist: (state, action) => {
-      // Fill wishlistCountries with all country codes
-      state.wishlistCountries = action.payload;
-    },
-  },
+      const allCodes = action.payload.map(c => c.code);
+      state.wishlistCountries = allCodes;
+      state.visitedCountries = []; // Optional: reset visited if needed
+    }
+  }
 });
 
 export const { toggleVisited, toggleWishlist, highlightAllWishlist } = mapSlice.actions;
