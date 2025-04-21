@@ -1,0 +1,16 @@
+/* index.css */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #1a1a1a; /* default to dark */
+  transition: background-color 0.3s ease;
+}
+
+body.light-mode {
+  background-color: #f0f0f0;
+}
+
+body.dark-mode {
+  background-color: #1a1a1a;
+}

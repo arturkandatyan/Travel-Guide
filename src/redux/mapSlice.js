@@ -32,7 +32,7 @@ const mapSlice = createSlice({
     highlightAllWishlist: (state, action) => {
       const allCodes = action.payload.map(c => c.code);
       state.wishlistCountries = allCodes;
-      state.visitedCountries = []; // Optional: reset visited if needed
+      state.visitedCountries = [];
     }
   }
 });
